@@ -1,0 +1,247 @@
+{% extends 'base.html' %}
+
+{% load humanize %}
+
+{% block title %} | Welcome {% endblock %}
+
+{% block content %}
+
+<!-- Showcase -->
+<section id="showcase">
+    <div class="container text-center">
+      <div class="home-search p-5">
+        <div class="overlay p-5">
+          <h1 class="display-4 mb-4">
+            Smartphone Searching Just Got So Easy
+          </h1>
+          <p class="lead">Are you worried about how to buy a new phone ? Just try some keywords below or just filter it out !</p>
+          <div class="search">
+            <form action="{% url 'search' %}">
+              <!-- Form Row 1 -->
+              <div class="form-row">
+
+                <div class="col-md-12 mb-3">
+                  <label class="sr-only">Keywords</label>
+                  <input type="text" name="keywords" class="form-control" placeholder="Search Description of your favourite Smartphone">
+                </div>
+
+                <div class="col-md-6 mb-3">
+                  <label class="sr-only">Brand</label>
+                  <select name="brand" class="form-control">
+                    <option selected="true" disabled="disabled">Brand</option>
+                    {% for key,value in brand_choices.items %}
+                      <option value="{{ key }}">{{ value }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                  <select name="price" class="form-control" id="type">
+                    <option selected="true" disabled="disabled">Max Price (Any)</option>
+                    {% for key,value in price_choices.items %}
+                      <option value="{{ key }}">{{ value }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+
+              </div>
+
+              <!-- Form Row 2 -->
+
+              <div class="form-row">
+
+                <div class="col-md-4 mb-3">
+                  <label class="sr-only">RAM</label>
+                  <select name="ram" class="form-control">
+                    <option selected="true" disabled="disabled">RAM</option>
+                    {% for key,value in ram_choices.items %}
+                      <option value="{{ key }}">{{ value }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+
+                <div class="col-md-4 mb-3">
+                  <label class="sr-only">storage</label>
+                  <select name="storage" class="form-control">
+                    <option selected="true" disabled="disabled">Storage</option>
+                    {% for key,value in storage_choices.items %}
+                      <option value="{{ key }}">{{ value }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+
+                <div class="col-md-4 mb-3">
+                  <label class="sr-only">color</label>
+                  <select name="color" class="form-control">
+                    <option selected="true" disabled="disabled">Color</option>
+                    {% for key,value in color_choices.items %}
+                      <option value="{{ key }}">{{ value }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+                
+              </div>
+
+              <!-- Form Row 3 -->
+
+              <div class="form-row">
+                <div class="col-md-4 mb-3">
+                  <label class="sr-only">os</label>
+                  <select name="os" class="form-control">
+                    <option selected="true" disabled="disabled">Operating System</option>
+                    {% for key,value in os_choices.items %}
+                      <option value="{{ key }}">{{ value }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+                <div class="col-md-4 mb-3">
+                  <select name="battery" class="form-control" id="type">
+                    <option selected="true" disabled="disabled">Battery Capacity</option>
+                    {% for key,value in battery_choices.items %}
+                      <option value="{{ key }}">{{ value }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+
+                <div class="col-md-4 mb-3">
+                  <select name="displayrefreshrate" class="form-control" id="type">
+                    <option selected="true" disabled="disabled">Display Refresh Rate</option>
+                    {% for key,value in display_refresh_rate_choices.items %}
+                      <option value="{{ key }}">{{ value }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+
+              </div>
+
+              <!-- Form Row 4 -->
+
+              <div class="form-row">
+                <div class="col-md-4 mb-3">
+                  <label class="sr-only">os</label>
+                  <select name="cable" class="form-control">
+                    <option selected="true" disabled="disabled"> Charging Cable</option>
+                    {% for key,value in cable_choices.items %}
+                      <option value="{{ key }}">{{ value }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+                <div class="col-md-4 mb-3">
+                  <select name="city" class="form-control" id="type">
+                    <option selected="true" disabled="disabled"> City</option>
+                    {% for key,value in city_choices.items %}
+                      <option value="{{ key }}">{{ value }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+
+                <div class="col-md-4 mb-3">
+                  <select name="state" class="form-control" id="type">
+                    <option selected="true" disabled="disabled">State</option>
+                    {% for key,value in state_choices.items %}
+                      <option value="{{ key }}">{{ value }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+
+              </div>
+
+
+
+              <button class="btn btn-secondary btn-block mt-4" type="submit">Submit form</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Alerts -->
+  
+  {% include 'partials/_alerts.html' %}
+
+  <!-- Listings -->
+  <section id="listings" class="py-5">
+    <div class="container">
+      <h3 class="text-center mb-3">Latest Listings</h3>
+      <div class="row">
+        {% if listings %}
+          {% for listing in listings%}
+            <!-- Listing 1 -->
+            <div class="col-md-6 col-lg-4 mb-6">
+              <div class="card listing-preview">
+                <img class="card-img-top" src="{{listing.photo_main.url}}" alt="">
+                <div class="card-img-overlay">
+                  <h2>
+                    <span class="badge badge-secondary text-white">INR {{ listing.price | intcomma }}</span>
+                  </h2>
+                </div>
+                <div class="card-body">
+                  <div class="listing-heading text-center">
+                    <h4 class="text-primary">{{ listing.brand }}</h4>
+                    <p>
+                      <i class="fas fa-map-marker text-secondary"></i> {{ listing.modelname }} </p>
+                  </div>
+                  <hr>
+                  <div class="row py-2 text-secondary">
+                    <div class="col-6">
+                      <i class="fas fa-rupee-sign"></i> Price : INR {{ listing.price }}</div>
+                    <div class="col-6">
+                      <i class="fas fa-tachometer-alt"></i> RAM : {{ listing.ram }} GB </div>
+                  </div>
+                  <div class="row py-2 text-secondary">
+                    <div class="col-6">
+                      <i class="fas fa-palette"></i> Color : {{ listing.color }}</div>
+                    <div class="col-6">
+                      <i class="far fa-hdd"></i> Storage : {{ listing.storage }} GB </div>
+                  </div>
+                  <hr>
+                  <div class="row py-2 text-secondary">
+                    <div class="col-6">
+                      <i class="fas fa-user"></i> {{ listing.sname }}</div>
+                  </div>
+                  <div class="row text-secondary pb-2">
+                    <div class="col-6">
+                      <i class="fas fa-clock"></i> {{ listing.list_date | timesince }}</div>
+                  </div>
+                  <hr>
+                  <a href="{% url 'listing' listing.id %}" class="btn btn-primary btn-block">More Info</a>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        {% else %}
+          <div class="col-md-12">
+            <p>No Listings Available</p>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+
+  <section id="services" class="py-5 bg-secondary text-white">
+    <div class="container">
+      <div class="row text-center">
+        <div class="col-md-4">
+          <a href="{% url 'sell' %}" class="far fa-hand-pointer fa-5x mr-4"></a>
+          <hr>
+          <h3>Sell Old Smartphones</h3><br>
+          <p>Mobile For Sell is the simplest way to sell your old smartphone online. Instantly unlock the best deal for your device from the convenience of home or office. Our buyback platform is at the center of our endeavor to bring greater affordability and lower cost of ownership to smartphone users.</p>
+        </div>
+        <div class="col-md-4">
+          <a href="{% url 'listings' %}" class="fas fa-shopping-bag fa-5x mr-4"></a>
+          <hr>
+          <h3>Buy Old Smartphones</h3><br>
+          <p>Mobile For Sell is the simplest way to buy old smartphone online. Instantly unlock the best deal for your device from the convenience of home or office. Our way of buying and selling a smartphones is too easy platform for greater affordability and lower cost of ownership to smartphone users.</p>
+        </div>
+        <div class="col-md-4">
+          <a href="{% url 'about' %}" class="fas fa-phone fa-5x mr-4"></a>
+          <hr>
+          <h3>Consult With Seller</h3><br>
+          <p>Mobile For Sell is nothing but a medium for the buyer as well as for seller to interact with each other via there ease means of communications.By Interacting with eachother they can get the best deal for their Smartphones</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}

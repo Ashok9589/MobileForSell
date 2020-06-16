@@ -1,0 +1,5 @@
+{
+    "git.ignoreLimitWarning": true,
+    "python.pythonPath": "venv/bin/python",
+    "editor.fontSize": 15
+}

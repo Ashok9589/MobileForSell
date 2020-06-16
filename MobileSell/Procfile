@@ -1,0 +1,1 @@
+web: gunicorn mobilesell.wsgi --log-file -

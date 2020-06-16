@@ -1,0 +1,309 @@
+{% extends 'base.html' %}
+
+{% load humanize %}
+
+{% load static %}
+
+{% block title %} | Sell {% endblock %}
+
+{% block content %}
+
+<section id="showcase-inner" class="py-5 text-white">
+  <div class="container">
+    <div class="row text-center">
+      <div class="col-md-12">
+        <h1 class="display-4">Sell Your Smartphone</h1>
+        <p class="lead">Selling your Smartphone just become easy by Mobile For Sell !</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Breadcrumb -->
+<section id="bc" class="mt-3">
+  <div class="container">
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="{% url 'index' %}"><i class="fas fa-home"></i> Home</a>
+        </li>
+        <li class="breadcrumb-item">
+          <a href="{% url 'sell' %}">Sell</a>
+        </li>
+        <li class="breadcrumb-item active">{{ listing.title }}</li>
+      </ol>
+    </nav>
+  </div>
+</section>
+
+<section id="register" class="bg py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 mx-auto">
+        <div class="card">
+          <div class="card-header bg-primary text-white">
+            <h4>
+              <i class="fas fa-user-plus"></i>&nbsp Fill Up the form to sell your Smartphone</h4>
+          </div>
+
+
+          <div class="col-md-8 mb-3">
+
+            <form class="seller-form" method="post" enctype="multipart/form-data">
+              {% csrf_token %}
+              <br>
+              <div class="form-group clearfix">
+                <div class="row ">
+                  <div class="col-lg-3">
+                    <label class="control-label form-label" for="sname"><i class="fas fa-user-cog"></i> Enter Name
+                      :</label>
+                  </div>
+                  <div class="col-lg-9">
+                    <input class="form-control required" id="sname" name="sname" type="text" required>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group clearfix">
+                <div class="row ">
+                  <div class="col-lg-3">
+                    <label class="control-label form-label" for="phone"><i class="fas fa-phone-square"></i> Contact No.
+                      :</label>
+                  </div>
+                  <div class="col-lg-9">
+                    <input class="form-control required" id="phone" name="phone" type="number" required>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group clearfix">
+                <div class="row ">
+                  <div class="col-lg-3">
+                    <label class="control-label form-label" for="email"><i class="fas fa-envelope-open"></i> Email
+                      Address :</label>
+                  </div>
+                  <div class="col-lg-9">
+                    <input class="form-control required" id="email" name="email" type="text" required>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group clearfix">
+                <div class="row ">
+                  <div class="col-lg-3">
+                    <label class="control-label form-label" for="brand"><i class="fab fa-bandcamp"></i> Brand Name
+                      :</label>
+                  </div>
+                  <div class="col-lg-9">
+                    <input class="form-control required" id="brand" name="brand" type="text" required>
+                  </div>
+                </div>
+              </div>
+
+            
+              <div class="form-group clearfix">
+                <div class="row ">
+                  <div class="col-lg-3">
+                    <label class="control-label form-label" for="modelname"><i class="fas fa-pen-nib"></i> Model Name
+                      :</label>
+                  </div>
+                  <div class="col-lg-9">
+                    <input class="form-control required" id="modelname" name="modelname" type="text" required>
+                  </div>
+                </div>
+              </div>
+
+              
+              <div class="form-group clearfix">
+                <div class="row ">
+                  <div class="col-lg-3">
+                    <label class="control-label form-label" for="price"><i class="fas fa-rupee-sign"></i> Price :
+                    </label>
+                  </div>
+                  <div class="col-lg-9">
+                    <input class="form-control required" id="price" name="price" type="number" required>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="form-group clearfix">
+                <div class="row ">
+                  <div class="col-lg-3">
+                    <label class="control-label form-label" for="ram"><i class="fas fa-th-large"></i> RAM :</label>
+                  </div>
+                  <div class="col-lg-9">
+                    <input class="form-control required" id="ram" name="ram" type="number" required>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group clearfix">
+                <div class="row ">
+                  <div class="col-lg-3">
+                    <label class="control-label form-label" for="storage"><i class="far fa-hdd"></i> Storage :</label>
+                  </div>
+                  <div class="col-lg-9">
+                    <input class="form-control required" id="storage" name="storage" type="text" required>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="form-group clearfix">
+                <div class="row ">
+                  <div class="col-lg-3">
+                    <label class="control-label form-label" for="color"><i class="fas fa-palette"></i> Color :</label>
+                  </div>
+                  <div class="col-lg-9">
+                    <input class="form-control required" id="color" name="color" type="text" required>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group clearfix">
+                <div class="row ">
+                  <div class="col-lg-3">
+                    <label class="control-label form-label" for="os"><i class="fab fa-android"></i> Operating System
+                      :</label>
+                  </div>
+                  <div class="col-lg-9">
+                    <input class="form-control required" id="os" name="os" type="text">
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group clearfix">
+                <div class="row ">
+                  <div class="col-lg-3">
+                    <label class="control-label form-label" for="battery"><i class="fas fa-battery-three-quarters"></i>
+                      Battery Capacity :</label>
+                  </div>
+                  <div class="col-lg-9">
+                    <input class="form-control required" id="battery" name="battery" type="number">
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group clearfix">
+                <div class="row ">
+                  <div class="col-lg-3">
+                    <label class="control-label form-label" for="frontcam"><i class="fas fa-camera-retro"></i> Front
+                      Camera :</label>
+                  </div>
+                  <div class="col-lg-9">
+                    <input class="form-control required" id="frontcam" name="frontcam" type="number">
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group clearfix">
+                <div class="row ">
+                  <div class="col-lg-3">
+                    <label class="control-label form-label" for="rearcam"><i class="fas fa-camera"></i> Rear Camera
+                      :</label>
+                  </div>
+                  <div class="col-lg-9">
+                    <input class="form-control required" id="rearcam" name="rearcam" type="text" required>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group clearfix">
+                <div class="row ">
+                  <div class="col-lg-3">
+                    <label class="control-label form-label" for="displayrefreshrate"><i class="fas fa-calendar"></i>
+                      Display refresh rate :</label>
+                  </div>
+                  <div class="col-lg-9">
+                    <input class="form-control required" id="displayrefreshrate" name="displayrefreshrate" type="text">
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group clearfix">
+                <div class="row ">
+                  <div class="col-lg-3">
+                    <label class="control-label form-label" for="cable"><i class="fas fa-charging-station"></i> Charging
+                      Cable :</label>
+                  </div>
+                  <div class="col-lg-9">
+                    <input class="form-control required" id="cable" name="cable" type="text">
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group clearfix">
+                <div class="row ">
+                  <div class="col-lg-3">
+                    <label class="control-label form-label" for="city">City :</label>
+                  </div>
+                  <div class="col-lg-9">
+                    <input class="form-control required" id="city" name="city" type="text" required>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group clearfix">
+                <div class="row ">
+                  <div class="col-lg-3">
+                    <label class="control-label form-label" for="state">State : </label>
+                  </div>
+                  <div class="col-lg-9">
+                    <input class="form-control required" id="state" name="state" type="text" required>
+                  </div>
+                </div>
+              </div>
+
+              
+              <div class="form-group clearfix" >
+                <div class="row ">
+                  <div class="col-lg-3" >
+                    <label class="control-label form-label" for="description">Description :</label>
+                  </div>
+                  <div class="col-lg-9">
+                    <input class="form-control required" id="description" name="description" type="text" required>
+                  </div>
+                </div>
+              </div>
+
+
+              <input type="file" name="photo_main" id="photo_main">
+              <br><br>
+
+              <input type="file" name="photo_1" id="photo_1">
+              <br><br>
+
+              <input type="file" name="photo_2" id="photo_2">
+              <br><br>
+
+              <input type="file" name="photo_3" id="photo_3">
+
+              <br><br>
+              <input type="file" name="photo_4" id="photo_4">
+
+              <br><br>
+              <input type="file" name="photo_5" id="photo_5">
+
+              <br><br>
+
+              <input type="file" name="photo_6" id="photo_6">
+
+              <br><br>
+              <button class="btn btn-secondary " type="submit">Submit</button>&nbsp&nbsp&nbsp&nbsp
+              <button type="reset" value="Reset">Reset</button>
+
+          </div>
+          </form>
+        </div>
+      </div>
+    </div>
+</section>
+
+{% block extrastyle %}
+<link rel="stylesheet" href="{% static 'css/admin.css' %}">
+{% endblock %}
+
+
+</div>
+
+{% endblock %}
