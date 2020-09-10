@@ -1,5 +1,35 @@
 # MobileForSell
 
+# Installation (Mac and Linux)
+Clone the repo and then run the following commands
+
+Create a virtual environment </br>
+python3 -m venv ./ashok </br>
+Activate virtual environment </br>
+source ./ashok/bin/activate </br>
+Install all the required packages </br>
+pip3 install -r requirements.txt </br>
+
+# Installation (Windows) </br>
+
+Clone the repo and then run the following commands </br>
+
+Create a virtual environment </br>
+python -m venv ./ashok </br>
+Activate virtual environment  </br>
+ashok/Script/activate </br>
+Install all the required packages </br>
+pip install -r requirements.txt </br>
+Usage </br>
+Mac and Linux </br>
+python3 manage.py runserver </br>
+Windows </br>
+python manage.py runserver </br>
+Contributing </br>
+
+### Pull requests are welcome. 
+## For major changes, please open an issue first to discuss what you would like to change.
+
 ![Screenshot (20)](https://user-images.githubusercontent.com/61847405/92763341-0bbe4000-f3b1-11ea-87c2-2ad686077ccb.png)
 <br><br><br><br>
 
